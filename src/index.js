@@ -54,7 +54,32 @@ function handleSearch(event) {
   searchCity(searchInput.value);
 }
 
+function displayForecast() {
+    let forecast = document.querySelector("#forecast");
+
+    let days = ["Tue","Wed","Thu","Fri","Sat"];
+    let forecastHtml = "";
+
+    days.forEach(function(day){
+         forecastHtml = forecastHtml + `
+ <div class="forecast-date">
+                <div class="forecast-day">${day}</div>
+                <div class="forecast-icon">🌥️</div>
+                <div class="forecast-temp-day">
+                   <div class="forecast-temperature">
+                   <strong>15°</strong></div>
+                   <div class="forecast-temperature">9°</div>
+                </div>
+            </div>
+`;
+    });
+
+   forecast.innerHTML = forecastHtml;
+
+}
+
 let searchFormElement = document.querySelector(".search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
 searchCity("Accra");
+displayForecast();
