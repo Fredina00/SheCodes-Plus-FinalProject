@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <form class="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city"
+            required
+            id="search-input"
+            class="input"
+          />
+          <input type="submit" value="Search" class="search-button" />
+        </form>
+      </header>
+
+      <main>
+        <div class="weather-data">
+          <div>
+            <h1 id="weather-city"></h1>
+            <p>
+              <span id="time"></span>, <span id="description"></span>
+              <br />
+              Humidity: <strong id="humidity"></strong>, Wind: <strong id="speed"></strong>
+            </p>
+          </div>
+          <div class="temperature">
+            <div id="weather-icon">
+            </div>
+            <div class="weather-temperature" id="temperature"></div>
+            <div class="unit">°C</div>
+          </div>
+        </div>
+      </main>
+      <div class="weather-forecast">
+            <div class="row">
+                <div class="col-2">
+                    <div class="forecast-day">
+                    Thu
+                    </div>
+                    <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="" width="42">
+                    <div class="forecast-temp-day">
+                        <span class="max-temp">
+                            18° 
+                        </span>
+                        <span class="min-temp">
+                           12°  
+                        </span>
+                   
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+      <footer>
+        This project was coded by
+        <a href="https://github.com/Fredina00">Fredina</a>, is
+        <a href="https://github.com/Fredina00/shecodes-week7"
+          >hosted on Github</a
+        >
+        and hosted on
+        <a href="https://shecodes-week7-by-ak.netlify.app/">Netlify</a>
+      </footer>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
