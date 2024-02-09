@@ -17,6 +17,8 @@ function updateWeather(response) {
   temperatureElement.innerHTML = Math.round(temperature);
   speedElement.innerHTML = `${response.data.wind.speed}km/h`;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -54,7 +56,15 @@ function handleSearch(event) {
   searchCity(searchInput.value);
 }
 
-function displayForecast() {
+function getForecast(city) {
+  let apiKey = "2ocb7acd896tf43b0e5f09484729f44d";
+  let apiUrl =
+    `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+    axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
     let forecast = document.querySelector("#forecast");
 
     let days = ["Tue","Wed","Thu","Fri","Sat"];
@@ -82,4 +92,5 @@ let searchFormElement = document.querySelector(".search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
 searchCity("Accra");
-displayForecast();
+
+
