@@ -56,41 +56,53 @@ function handleSearch(event) {
   searchCity(searchInput.value);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
 function getForecast(city) {
   let apiKey = "2ocb7acd896tf43b0e5f09484729f44d";
-  let apiUrl =
-    `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-    axios(apiUrl).then(displayForecast);
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
 }
 
 function displayForecast(response) {
   console.log(response.data);
-    let forecast = document.querySelector("#forecast");
+  let forecast = document.querySelector("#forecast");
 
-    let days = ["Tue","Wed","Thu","Fri","Sat"];
-    let forecastHtml = "";
+  let forecastHtml = "";
 
-    days.forEach(function(day){
-         forecastHtml = forecastHtml + `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
  <div class="forecast-date">
-                <div class="forecast-day">${day}</div>
-                <div class="forecast-icon">🌥️</div>
+                <div class="forecast-day">${formatDay(day.time)}</div>
+                <div ><img src="${
+                  day.condition.icon_url
+                }" class="forecast-icon"/></div>
                 <div class="forecast-temp-day">
                    <div class="forecast-temperature">
-                   <strong>15°</strong></div>
-                   <div class="forecast-temperature">9°</div>
+                   <strong>${Math.round(
+                     day.temperature.maximum
+                   )}°</strong></div>
+                   <div class="forecast-temperature">${Math.round(
+                     day.temperature.minimum
+                   )}°</div>
                 </div>
             </div>
 `;
-    });
+    }
+  });
 
-   forecast.innerHTML = forecastHtml;
-
+  forecast.innerHTML = forecastHtml;
 }
 
 let searchFormElement = document.querySelector(".search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
 searchCity("Accra");
-
-
